@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AuthenticationService } from './services/authentication.service';
 
 import { AppComponent } from './app.component';
 import { HistoryBannerComponent } from './history-banner/history-banner.component';
@@ -25,9 +28,10 @@ import { AppRoutingModule } from './/app-routing.module';
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

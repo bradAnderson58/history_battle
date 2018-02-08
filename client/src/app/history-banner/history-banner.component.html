@@ -21,6 +21,18 @@
     </button>
   </div>
   <div class="modal-body">
-    TODO: login stuff here
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input class="form-control" #username>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" #password>
+      </div>
+    </form>
+    <div class="alert alert-danger" *ngIf="invalidLogin()">Login Failed</div>
+    <button class="btn btn-light" (click)="modalRef.hide()">Close</button>
+    <button class="btn btn-secondary" (click)="submitLogin(username.value, password.value)">Login</button>
   </div>
 </ng-template>
