@@ -4,8 +4,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthenticationService } from './services/authentication.service';
+import { TokenInterceptor } from './services/token.interceptor';
 
 import { AppComponent } from './app.component';
 import { HistoryBannerComponent } from './history-banner/history-banner.component';
@@ -13,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
 import { ContactComponent } from './contact/contact.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -21,7 +24,8 @@ import { AppRoutingModule } from './/app-routing.module';
     HistoryBannerComponent,
     HomeComponent,
     FaqComponent,
-    ContactComponent
+    ContactComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,10 @@ import { AppRoutingModule } from './/app-routing.module';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AuthenticationService],
+  providers: [
+    AuthenticationService,
+  //  { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
