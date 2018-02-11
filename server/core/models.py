@@ -10,6 +10,7 @@ class Quiz(models.Model):
     owner = models.ForeignKey('auth.User', related_name='quizzes', on_delete=models.CASCADE)
     name = models.CharField(max_length=45, null=True)
     num_books = models.IntegerField()
+    score = models.IntegerField(null=True)
     # curriculum will be another foreign key
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

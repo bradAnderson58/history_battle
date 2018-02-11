@@ -13,4 +13,4 @@ class QuizSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     class Meta:
         model = Quiz
-        fields = ('id', 'name', 'num_books', 'owner')
+        fields = ('id', 'name', 'num_books', 'owner', 'score')

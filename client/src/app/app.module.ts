@@ -4,9 +4,11 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthenticationService } from './services/authentication.service';
+import { QuizService } from './services/quiz.service';
 import { TokenInterceptor } from './services/token.interceptor';
 
 import { AppComponent } from './app.component';
@@ -33,11 +35,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [
     AuthenticationService,
-  //  { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    QuizService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

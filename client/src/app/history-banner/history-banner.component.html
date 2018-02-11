@@ -4,9 +4,11 @@
     <a class="navbar-brand" href="#">{{ title }}</a>
     <div class="collapse navbar-collapse" routerLinkActive="active">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="faq">FAQ</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="contact">Contact</a></li>
+        <li *ngIf="!isLoggedIn()" class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>
+        <li *ngIf="!isLoggedIn()" class="nav-item"><a class="nav-link" routerLink="faq">FAQ</a></li>
+        <li *ngIf="!isLoggedIn()" class="nav-item"><a class="nav-link" routerLink="contact">Contact</a></li>
+        <li *ngIf="isLoggedIn()" class="nav-item"><a class="nav-link" routerLink="dashboard">Dashboard</a></li>
+        <li *ngIf="isLoggedIn()" class="nav-item"><a class="nav-link" routerLink="quizzes">Quizzes</a></li>
       </ul>
       <button *ngIf="!isLoggedIn()" class="btn btn-outline-success my-2 my-sm-0" (click)="openModal(template)">Login</button>
       <button *ngIf="isLoggedIn()" class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Logout</button>
