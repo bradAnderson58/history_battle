@@ -9,7 +9,6 @@ export class AuthGuardService {
   constructor(private router: Router, private auth: AuthenticationService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log(this.auth.isLoggedIn());
     if (this.auth.isLoggedIn()) {
       return true;
     }

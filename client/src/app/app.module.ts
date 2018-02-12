@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthenticationService } from './services/authentication.service';
 import { QuizService } from './services/quiz.service';
+import { FileUploadService } from './services/fileupload/fileupload.service';
 import { TokenInterceptor } from './services/token.interceptor';
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { FaqComponent } from './faq/faq.component';
 import { ContactComponent } from './contact/contact.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HomeComponent,
     FaqComponent,
     ContactComponent,
-    DashboardComponent
+    DashboardComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   providers: [
     AuthenticationService,
     QuizService,
+    FileUploadService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

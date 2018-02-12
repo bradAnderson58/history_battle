@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from core import views, urls # TODO: do I still need to include these?
+from core import views, urls
+from uploads import urls
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
     path('', include('core.urls')),
-    #path('api-auth/', include('rest_framework.urls'))
+    path('', include('uploads.urls'))
 ]
