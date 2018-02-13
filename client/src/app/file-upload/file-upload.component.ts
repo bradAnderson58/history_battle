@@ -7,7 +7,9 @@ import { FileUploadService } from '../services/fileupload/fileupload.service';
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent implements OnInit {
+  validType: string = "text/csv";
   fileToUpload: File = null;
+  hideError: boolean = true;
 
   constructor(private fileUploadService: FileUploadService) { }
 
@@ -16,6 +18,12 @@ export class FileUploadComponent implements OnInit {
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
+    console.log(this.fileToUpload);
+    this.hideError = this.fileToUpload.type === this.validType;
+  }
+
+  isValidFile() {
+    return this.fileToUpload === null || this.fileToUpload.type !== this.validType;
   }
 
   uploadFile() {

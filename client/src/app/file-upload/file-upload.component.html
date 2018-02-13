@@ -1,6 +1,14 @@
 
-<div class="form-group">
-  <label for="file">Choose File</label>
-  <input type="file" id="file" (change)="handleFileInput($event.target.files)">
-  <button class="btn btn-secondary" [disabled]="fileToUpload === null" (click)="uploadFile()">Upload</button>
+<div class="mx-auto">
+  <div class="form-group">
+    <label for="file">Choose File</label>
+    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+    <button class="btn btn-secondary" [disabled]="isValidFile()" (click)="uploadFile()">Upload</button>
+  </div>
+
+
+
+<div class="alert alert-danger" role="alert" [hidden]="hideError">
+  Please choose a CSV file
+</div>
 </div>

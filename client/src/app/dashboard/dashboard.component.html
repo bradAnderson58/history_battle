@@ -1,11 +1,13 @@
 
 
-<app-file-upload></app-file-upload>
-
 <div class="container" style="padding-top: 20px;">
   <div class='row'>
-    <div class='col-lg-2'></div>
-    <div class='col-lg-8'>
+    <div class="mx-auto">
+      <app-file-upload></app-file-upload>
+    </div>
+  
+
+    <div class='col-lg-8 mx-auto'>
       <h1>My Scores</h1>
       <mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="name">
