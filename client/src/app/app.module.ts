@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
 import { QuizService } from './services/quiz.service';
 import { FileUploadService } from './services/fileupload/fileupload.service';
+import { KeenDataService } from './services/keen-data/keen-data.service';
 import { TokenInterceptor } from './services/token.interceptor';
 
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { KeenDataComponent } from './keen-data/keen-data.component';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     FaqComponent,
     ContactComponent,
     DashboardComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    KeenDataComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     AuthenticationService,
     QuizService,
     FileUploadService,
+    KeenDataService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

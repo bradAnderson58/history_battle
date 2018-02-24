@@ -10,6 +10,10 @@ export class FileUploadComponent implements OnInit {
   validType: string = "text/csv";
   fileToUpload: File = null;
   hideError: boolean = true;
+  uploadStatus: string;
+  hideStatus: boolean = true;
+  uploadMessage: string;
+  validUpload: Object;
 
   constructor(private fileUploadService: FileUploadService) { }
 
@@ -20,6 +24,7 @@ export class FileUploadComponent implements OnInit {
     this.fileToUpload = files.item(0);
     console.log(this.fileToUpload);
     this.hideError = this.fileToUpload.type === this.validType;
+    this.hideStatus = true;
   }
 
   isValidFile() {
@@ -27,11 +32,19 @@ export class FileUploadComponent implements OnInit {
   }
 
   uploadFile() {
+    this.uploadMessage = this.fileUploadService.messages.UPLOAD;
+    this.hideStatus = false;
+    this.uploadStatus = "UPLOADING";
     this.fileUploadService.postFile(this.fileToUpload)
       .subscribe(data => {
-        console.log("success");  // TODO: something more meaningful
+        console.log(data);
+        this.uploadMessage = this.fileUploadService.messages.SUCCESS;
+        this.validUpload = data;
+        this.uploadStatus = "SUCCESS";
       }, error => {
-        console.log("error");  // TODO: something more meaningful
+        console.log(error);
+        this.uploadMessage = this.fileUploadService.messages.FAILURE;
+        this.uploadStatus = "FAILED";
       });
   }
 

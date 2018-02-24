@@ -6,9 +6,17 @@
     <button class="btn btn-secondary" [disabled]="isValidFile()" (click)="uploadFile()">Upload</button>
   </div>
 
-
-
 <div class="alert alert-danger" role="alert" [hidden]="hideError">
   Please choose a CSV file
 </div>
+
+<!-- TODO: add 'wait' icon on uploading icon -->
+<div class="alert" [ngClass]="{
+  'alert-info' : uploadStatus === 'UPLOADING',
+  'alert-success' : uploadStatus === 'SUCCESS',
+  'alert-danger' : uploadStatus === 'FAILED' }" [hidden]="hideStatus">
+  {{uploadMessage}} 
+  <a *ngIf="uploadStatus === 'SUCCESS'" routerLink="/keen/{{validUpload.id}}">
+    click here to view
+  </a>
 </div>

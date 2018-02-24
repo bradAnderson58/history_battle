@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FaqComponent } from './faq/faq.component';
 import { ContactComponent } from './contact/contact.component';
+import { KeenDataComponent } from './keen-data/keen-data.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'faq', component: FaqComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'keen/:id', component: KeenDataComponent },
 
   { path: '**', redirectTo: '/dashboard', pathMatch: 'full' }
 ];

@@ -7,16 +7,14 @@
     </div>
   
 
+
+<!-- TODO: move this to a component -->
     <div class='col-lg-8 mx-auto'>
       <h1>My Scores</h1>
       <mat-table [dataSource]="dataSource">
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-          <mat-cell *matCellDef="let quiz"> {{ quiz.name }} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="score">
-          <mat-header-cell *matHeaderCellDef> Score </mat-header-cell>
-          <mat-cell *matCellDef="let quiz"> {{ quiz.score }} </mat-cell>
+        <ng-container *ngFor="let test of displayedColumns" matColumnDef="{{test}}">
+          <mat-header-cell *matHeaderCellDef> {{ test }} </mat-header-cell>
+          <mat-cell *matCellDef="let quiz"> {{ quiz[test] }} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
