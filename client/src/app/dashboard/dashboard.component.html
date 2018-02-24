@@ -5,22 +5,8 @@
     <div class="mx-auto">
       <app-file-upload></app-file-upload>
     </div>
-  
-
-
-<!-- TODO: move this to a component -->
-    <div class='col-lg-8 mx-auto'>
-      <h1>My Scores</h1>
-      <mat-table [dataSource]="dataSource">
-        <ng-container *ngFor="let test of displayedColumns" matColumnDef="{{test}}">
-          <mat-header-cell *matHeaderCellDef> {{ test }} </mat-header-cell>
-          <mat-cell *matCellDef="let quiz"> {{ quiz[test] }} </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-    </div>
   </div>
+  
 </div>
 
+<!--<quiz-list></quiz-list>-->

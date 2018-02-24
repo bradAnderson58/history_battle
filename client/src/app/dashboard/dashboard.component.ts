@@ -12,38 +12,11 @@ import { Quiz } from '../models/quiz';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  quizzes: Quiz[];
-  dataSource;
-  displayedColumns = ['name', 'score'];
 
-  constructor(private quizService: QuizService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getQuizzes();
   }
 
-  getQuizzes(): void {
-    this.quizService.getQuizzes()
-      .subscribe(quizzes => {
-        this.quizzes = quizzes;
-        this.dataSource = new QuizDataSource(quizzes);
-      });
-  }
-
-}
-
-export class QuizDataSource extends DataSource<any> {
-  private quizzes;
-
-  constructor(quizzes) {
-    super();
-    
-    this.quizzes = quizzes;
-  }
-
-  connect(): Observable<Quiz[]> {
-    return of(this.quizzes);
-  }
-  disconnect() { }
 }
 

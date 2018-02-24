@@ -22,6 +22,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { KeenDataComponent } from './keen-data/keen-data.component';
+import { QuizListComponent } from './quiz-list/quiz-list.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { KeenDataComponent } from './keen-data/keen-data.component';
     ContactComponent,
     DashboardComponent,
     FileUploadComponent,
-    KeenDataComponent
+    KeenDataComponent,
+    QuizListComponent
   ],
   imports: [
     BrowserModule,
