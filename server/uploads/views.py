@@ -5,6 +5,9 @@ from rest_framework.response import Response
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from uploads.csvValidator import CsvValidator
+import datetime
+import gzip
+from uploads.models import Upload
 
 class FileUploadView(APIView):
     parser_class = (FileUploadParser,)
@@ -17,6 +20,15 @@ class FileUploadView(APIView):
         if self.csvValidator.invalidUpload(file_obj.file):
             return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
 
+        file_name = self.__formatFileName(file_obj.name)
         file_obj.file.seek(0)
-        path = default_storage.save('data_files/' + file_obj.name, ContentFile(file_obj.read())) # TODO: write in chunks for large data sets / compress / timestamp
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        with gzip.GzipFile('data_files/' + file_name, 'w') as file_out:
+            file_out.write(file_obj.read())
+
+        data_set = Upload.objects.create(filename=file_name)
+        print(data_set.id)
+        return Response(data_set.id, status=status.HTTP_204_NO_CONTENT)
+
+    def __formatFileName(self, filename):
+        formattedName = filename.replace('.csv', '_', 1).replace(' ', '_')
+        return formattedName + str(datetime.datetime.now()) + '.gz'
