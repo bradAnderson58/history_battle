@@ -7,13 +7,14 @@ import { FileUploadService } from '../services/fileupload/fileupload.service';
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent implements OnInit {
-  validType: string = "text/csv";
+  validType: string = ".csv";
   fileToUpload: File = null;
   hideError: boolean = true;
   uploadStatus: string;
   hideStatus: boolean = true;
   uploadMessage: string;
   validUpload: Object;
+  extension: string;
 
   constructor(private fileUploadService: FileUploadService) { }
 
@@ -22,13 +23,14 @@ export class FileUploadComponent implements OnInit {
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
-    console.log(this.fileToUpload);
-    this.hideError = this.fileToUpload.type === this.validType;
+    const name = this.fileToUpload.name;
+    this.extension = name.substring(name.lastIndexOf('.'));
+    this.hideError = this.extension === this.validType;
     this.hideStatus = true;
   }
 
   isValidFile() {
-    return this.fileToUpload === null || this.fileToUpload.type !== this.validType;
+    return this.fileToUpload === null || this.extension !== this.validType;
   }
 
   uploadFile() {
@@ -42,7 +44,6 @@ export class FileUploadComponent implements OnInit {
         this.validUpload = data;
         this.uploadStatus = "SUCCESS";
       }, error => {
-        console.log(error);
         console.log(error);
         this.uploadMessage = this.fileUploadService.messages.FAILURE + error.statusText;
         this.uploadStatus = "FAILED";
