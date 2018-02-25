@@ -9,7 +9,7 @@ export class FileUploadService {
   public messages = {
     UPLOAD: "File Uploading, please wait ...",
     SUCCESS: "Success!  Data saved",
-    FAILURE: "Failure: Something went wrong :("
+    FAILURE: "Upload Failure: "
   }
 
   constructor(private http: HttpClient) { }

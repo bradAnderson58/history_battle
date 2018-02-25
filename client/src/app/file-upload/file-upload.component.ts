@@ -43,7 +43,8 @@ export class FileUploadComponent implements OnInit {
         this.uploadStatus = "SUCCESS";
       }, error => {
         console.log(error);
-        this.uploadMessage = this.fileUploadService.messages.FAILURE;
+        console.log(error);
+        this.uploadMessage = this.fileUploadService.messages.FAILURE + error.statusText;
         this.uploadStatus = "FAILED";
       });
   }
