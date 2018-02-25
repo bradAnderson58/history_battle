@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class KeenDataService {
-  private basePath = 'http://127.0.0.1:8000';  // TODO: get this from config for production
 
   constructor(private http: HttpClient) { }
 
   getData(id: number): Observable<any> {
-    const url = this.basePath + '/keen/' + id;
-    console.log(url);
+    console.log(environment.production);
+    const url = environment.apiUrl + '/keen/' + id;
     return this.http.get(url);
   }
 
