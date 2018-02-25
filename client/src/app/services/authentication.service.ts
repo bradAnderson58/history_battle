@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthenticationService {
   private token: string;
-  private basePath = 'http://127.0.0.1:8000';
 
   public invalidLogin = false;
 
@@ -18,7 +18,7 @@ export class AuthenticationService {
 
   login(username: string, password: string): Observable<any> {
 
-    return this.http.post<any>(this.basePath + '/get_auth_token/', {username: username, password: password})
+    return this.http.post<any>(environment.apiUrl + '/get_auth_token/', {username: username, password: password})
       .pipe(
         tap(response => this.handleResponse(username, response)),
         catchError((error: any) => Observable.throw(this.errorHandler(error)))
@@ -26,7 +26,7 @@ export class AuthenticationService {
   }
 
   logout(): void {
-    // clear token remove usuer from localStorage
+    // clear token remove user from localStorage
     this.token = null;
     localStorage.removeItem('current_user');
   }

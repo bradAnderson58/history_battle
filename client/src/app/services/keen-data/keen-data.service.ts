@@ -9,7 +9,6 @@ export class KeenDataService {
   constructor(private http: HttpClient) { }
 
   getData(id: number): Observable<any> {
-    console.log(environment.production);
     const url = environment.apiUrl + '/keen/' + id;
     return this.http.get(url);
   }

@@ -28,7 +28,7 @@ SECRET_KEY = config.get('ServerSettings', 'SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config.get('ServerSettings', 'DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [config.get('ServerSettings', 'HOSTS')]
 
 
 # Application definition
